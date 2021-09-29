@@ -1,0 +1,27 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 30,
+  "data": [
+    {
+      "name": null,
+      "rating_codeforces": 0,
+      "sno": 2015105600,
+      "solve_codeforces": 0,
+      "solve_fuquanoj": 0,
+      "solve_nowcoder": 0,
+      "solve_nyoj": 0,
+      "solve_zzulioj": 0
+    },
+    {
+      "name": "abmcar",
+      "rating_codeforces": 1600,
+      "sno": 2015105601,
+      "solve_codeforces": 110,
+      "solve_fuquanoj": 0,
+      "solve_nowcoder": 86,
+      "solve_nyoj": 0,
+      "solve_zzulioj": 13
+    }
+  ]
+}
