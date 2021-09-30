@@ -1,6 +1,5 @@
 {
   "code": 0,
-  "msg": "",
   "count": 30,
   "data": [
     {
@@ -23,5 +22,6 @@
       "solve_nyoj": 0,
       "solve_zzulioj": 13
     }
-  ]
+  ],
+  "msg": ""
 }
