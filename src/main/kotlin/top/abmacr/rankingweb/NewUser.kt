@@ -25,6 +25,7 @@ class NewUser : HttpServlet() {
         out.println("</body></html>")
         val nowName = request.getParameter("name")
         val nowSno = request.getParameter("sno")
+        val nowFakeName = request.getParameter("fakeName")
         val now_name_zzulioj = request.getParameter("id_zzulioj")
         val now_name_codeforces = request.getParameter("id_codeforces")
         val now_name_nowcoder = request.getParameter("id_nowcoder")
@@ -51,6 +52,16 @@ class NewUser : HttpServlet() {
         val querySql = "select * from ranking where sno=\'$nowSno\'"
         val queryResult = query.executeQuery(querySql)
         queryResult.next()
+
+        if (nowFakeName.isEmpty())
+            out.println("<h1>表单中昵称未填写</h1>")
+        else if (queryResult.getString("fakeName") != null)
+            out.println("<h1>已更新昵称</h1>")
+        else {
+            nowSql = "UPDATE ranking SET fakeName=$nowFakeName where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>昵称填写成功</h1>")
+        }
 
         if (now_name_zzulioj.isEmpty())
             out.println("<h1>表单中zzulioj未填写</h1>")

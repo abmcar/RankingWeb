@@ -2,9 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>table模块快速使用</title>
+  <title>NYIST_ACM Ranking List</title>
   <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
+<h2>每小时刷新一次</h2>
+<h2><a href="http://form.abmcar.top" style="color:BLUE">信息填写</a></h2>
+<h2>如有Bug或者其他问题,欢迎在<a href="https://github.com/abmcar/RankingWeb/issues" style="color:BLUE">https://github.com/abmcar/RankingWeb/issues</a> 提issue</h2>
+
 <body>
 
 <table id="demo" lay-filter="test"></table>
@@ -17,13 +21,14 @@
     //第一个实例
     table.render({
       elem: '#demo'
-      ,height: 312
+      ,height: 2048
       ,url: 'data.json' //数据接口
       ,page: false //开启分页
       ,cols: [[ //表头
         // {field: 'id', title: 'ID', width:100, sort: true, fixed: 'left'},
         {field: 'sno', title: '学号', width:120, sort: true, fixed: 'left'}
         ,{field: 'name', title: '姓名', width:100}
+        ,{field: 'fakeName', title: '昵称', width:100}
         ,{field: 'totSolve', title: '总题数', width:100, sort: true}
         ,{field: 'solve_zzulioj', title: 'zzulioj题数', width:130, sort: true}
         ,{field: 'solve_codeforces', title: 'codeforces题数', width:130, sort: true}
@@ -41,7 +46,6 @@
         // ,{field: 'wealth', title: '财富', width: 135, sort: true}
       ]]
     });
-
   });
 </script>
 </body>
