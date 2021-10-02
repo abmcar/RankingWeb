@@ -1,6 +1,6 @@
 @font-face {
     font-family: "CourierPrime";
-    src: url("../fonts/CourierPrime-Bold.ttf");
+    /*src: url("../fonts/CourierPrime-Bold.ttf");*/
 }
 .layui-table thead{
     /*background: #B8C1C8;*/
@@ -35,7 +35,7 @@
 body {
     --x: 0;
     --y: 0;
-    background: url("../images/background.png") fixed;
+    /*background: url("../images/background.png") fixed;*/
     margin: 0;
     color: var(--text-normal);
     font-size: 16px;
@@ -137,14 +137,17 @@ header {
 }
 
 #host {
-    position: absolute;
-    left: 24px;
-    top: 24px;
+    position: relative;
+    left: -1000px;
+    /*top: 0px;*/
+    /*width: 200px;*/
+    /*height: 200px;*/
+    /*object-fit: contain;*/
 }
 
 #host img {
-    width: 175px;
-    height: 83px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
@@ -365,7 +368,8 @@ footer img {
     align-items: center;
     left: 0;
     width: calc(100vw - 18px);
-    padding-top: 80px;
+    height: 100px;
+    /*padding-top: 80px;*/
     background: 0 0 / 80px 80px repeating-linear-gradient(to top, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0) 6%, hsla(0, 0%, 100%, .1) 7.5%),
     0 0 / 80px 80px repeating-linear-gradient(to top, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0) 4%, hsla(0, 0%, 0%, .03) 4.5%),
     0 0 / 80px 80px repeating-linear-gradient(to top, hsla(0, 0%, 100%, 0) 0%, hsla(0, 0%, 100%, 0) 1.2%, hsla(0, 0%, 100%, .15) 2.2%),
@@ -388,6 +392,7 @@ footer img {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     flex: auto;
+    /*left: -5550px;*/
     margin: 10px 0 0;
     font-family: CourierPrime, monospace;
     font-size: 30px;
@@ -397,7 +402,9 @@ footer img {
     text-shadow: hsla(0, 0%, 40%, .5) 0 -1px 0, hsla(0, 0%, 100%, .6) 0 2px 1px;
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 3;
+    /*left: -10p0x;*/
+    /*top: -500px;*/
+    /*-webkit-line-clamp: 3;*/
 }
 
 @media screen and (min-width: 1024px) {

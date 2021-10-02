@@ -6,6 +6,22 @@
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
 <body>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="http://ranking.abmcar.top">榜单</a></li>
+    <li class="layui-nav-item layui-this"><a href="http://www.abmcar.top:8080/RankingWeb-1.0-SNAPSHOT/form.html">信息填写</a></li>
+    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
+    <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
+    <!--  <li class="layui-nav-item">-->
+    <!--    <a href="javascript:;">解决方案</a>-->
+    <!--    <dl class="layui-nav-child"> &lt;!&ndash; 二级菜单 &ndash;&gt;-->
+    <!--      <dd><a href="">移动模块</a></dd>-->
+    <!--      <dd><a href="">后台模版</a></dd>-->
+    <!--      <dd><a href="">电商平台</a></dd>-->
+    <!--    </dl>-->
+    <!--  </li>-->
+</ul>
+<table id="demo" lay-filter="test"></table>
+
 <form class="layui-form" action="newUser" method="get"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
@@ -33,7 +49,7 @@
         </div>
         <label class="layui-form-label">牛客</label>
         <div class="layui-input-block">
-            <input type="text" name="id_nowcoder" placeholder="选填" autocomplete="off" class="layui-input">
+            <input type="text" name="id_nowcoder" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
         <label class="layui-form-label">nyoj</label>
         <div class="layui-input-block">
@@ -41,11 +57,11 @@
         </div>
         <label class="layui-form-label">fuquanoj</label>
         <div class="layui-input-block">
-            <input type="text" name="id_fuquanoj" placeholder="选填" autocomplete="off" class="layui-input">
+            <input type="text" name="id_fuquanoj" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
         <label class="layui-form-label">luogu</label>
         <div class="layui-input-block">
-            <input type="text" name="id_luogu" placeholder="选填" autocomplete="off" class="layui-input">
+            <input type="text" name="id_luogu" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
         <label class="layui-form-label">vjudge</label>
         <div class="layui-input-block">
@@ -67,6 +83,14 @@
     layui.use('form', function () {
         var form = layui.form;
         //各种基于事件的操作，下面会有进一步介绍
+    });
+</script>
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function(){
+        var element = layui.element;
+
+        //…
     });
 </script>
 </body>
