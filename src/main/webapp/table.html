@@ -5,9 +5,8 @@
   <title>NYIST_ACM Ranking List</title>
   <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
-<h2>每5min刷新一次</h2>
-<h2><a href="http://www.abmcar.top:8080/RankingWeb-1.0-SNAPSHOT/form.html" style="color:BLUE">信息填写</a></h2>
-<h2><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq" style="color:BLUE">常见问题解答</a></h2>
+<h2>每小时刷新一次</h2>
+<h2><a href="http://form.abmcar.top" style="color:BLUE">信息填写</a></h2>
 <h2>如有Bug或者其他问题,欢迎在<a href="https://github.com/abmcar/RankingWeb/issues" style="color:BLUE">https://github.com/abmcar/RankingWeb/issues</a> 提issue</h2>
 
 <body>
@@ -28,17 +27,15 @@
       ,cols: [[ //表头
         // {field: 'id', title: 'ID', width:100, sort: true, fixed: 'left'},
         {field: 'sno', title: '学号', width:120, sort: true, fixed: 'left'}
-        ,{field: 'name', title: '姓名', width:120}
-        ,{field: 'fakeName', title: '昵称', width:120}
+        ,{field: 'name', title: '姓名', width:100}
+        ,{field: 'fakeName', title: '昵称', width:100}
         ,{field: 'totSolve', title: '总题数', width:100, sort: true}
         ,{field: 'solve_zzulioj', title: 'zzulioj题数', width:130, sort: true}
-        ,{field: 'solve_codeforces', title: 'codeforces题数', width:150, sort: true}
-        ,{field: 'rating_codeforces', title: 'codeforces rating', width:150, sort: true}
+        ,{field: 'solve_codeforces', title: 'codeforces题数', width:130, sort: true}
+        ,{field: 'rating_codeforces', title: 'codeforces rating', width:130, sort: true}
         ,{field: 'solve_nowcoder', title: '牛客题数', width:130, sort: true}
         ,{field: 'solve_nyoj', title: 'nyoj题数', width:130, sort: true}
         ,{field: 'solve_fuquanoj', title: 'fuquanoj题数', width:130, sort: true}
-        ,{field: 'solve_luogu', title: 'luogu题数', width:130, sort: true}
-        ,{field: 'solve_vjudge', title: 'vjudge题数', width:130, sort: true}
         // ,{field: 'username', title: '用户名', width:100}
         // ,{field: 'sex', title: '性别', width:100, sort: true}
         // ,{field: 'city', title: '城市', width:100}
