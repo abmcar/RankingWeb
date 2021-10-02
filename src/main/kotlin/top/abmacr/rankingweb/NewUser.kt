@@ -31,6 +31,8 @@ class NewUser : HttpServlet() {
         val now_name_nowcoder = request.getParameter("id_nowcoder")
         val now_name_nyoj = request.getParameter("id_nyoj")
         val now_name_fuquanoj = request.getParameter("id_fuquanoj")
+        val now_name_luogu = request.getParameter("id_luogu")
+        val now_name_vjudge = request.getParameter("id_vjudge")
 
         val JDBC_DRIVER = "com.mysql.jdbc.Driver"
         val DB_URL = "jdbc:mysql://db.abmcar.top:10019/NYIST_ACM"
@@ -49,14 +51,14 @@ class NewUser : HttpServlet() {
         }
 
         val query = conn.createStatement()
-        val querySql = "select * from ranking where sno=\'$nowSno\'"
+        val querySql = "select * from ranking where sno='$nowSno'"
         val queryResult = query.executeQuery(querySql)
         queryResult.next()
 
         if (nowName.isEmpty())
             out.println("<h1>表单中姓名未填写</h1>")
         else {
-            nowSql = "UPDATE ranking SET sname=$nowFakeName where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET sname='$nowName' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>姓名填写成功</h1>")
         }
@@ -64,7 +66,7 @@ class NewUser : HttpServlet() {
         if (nowFakeName.isEmpty())
             out.println("<h1>表单中昵称未填写</h1>")
         else {
-            nowSql = "UPDATE ranking SET fakeName=$nowFakeName where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET fakeName='$nowFakeName' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>昵称填写成功</h1>")
         }
@@ -73,12 +75,12 @@ class NewUser : HttpServlet() {
             out.println("<h1>表单中zzulioj未填写</h1>")
         else if (queryResult.getString("id_zzulioj") != null) {
             out.println("<h1>数据库中zzulioj已存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_zzulioj=$now_name_zzulioj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_zzulioj='$now_name_zzulioj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>zzulioj覆盖</h1>")
         }
         else {
-            nowSql = "UPDATE ranking SET id_zzulioj=$now_name_zzulioj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_zzulioj='$now_name_zzulioj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>zzulioj填写成功</h1>")
         }
@@ -87,12 +89,12 @@ class NewUser : HttpServlet() {
             out.println("<h1>表单中codeforces未填写</h1>")
         else if (queryResult.getString("id_codeforces") != null) {
             out.println("<h1>数据库中codeforces已存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_codeforces=$now_name_codeforces where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_codeforces='$now_name_codeforces' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>codeforces覆盖成功</h1>")
         }
         else {
-            nowSql = "UPDATE ranking SET id_codeforces=$now_name_codeforces where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_codeforces='$now_name_codeforces' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>codeforces填写成功</h1>")
         }
@@ -101,12 +103,12 @@ class NewUser : HttpServlet() {
             out.println("<h1>表单中nowcoder未填写</h1>")
         else if (queryResult.getString("id_nowcoder") != null) {
             out.println("<h1>数据库中nowcoder存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_nowcoder=$now_name_nowcoder where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_nowcoder='$now_name_nowcoder' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>nowcoder覆盖成功</h1>")
         }
         else {
-            nowSql = "UPDATE ranking SET id_nowcoder=$now_name_nowcoder where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_nowcoder='$now_name_nowcoder' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>nowcoder填写成功</h1>")
         }
@@ -115,12 +117,12 @@ class NewUser : HttpServlet() {
             out.println("<h1>表单中nyoj未填写</h1>")
         else if (queryResult.getString("id_nyoj") != null) {
             out.println("<h1>数据库中nyoj存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_nyoj=$now_name_nyoj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_nyoj='$now_name_nyoj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>nyoj覆盖成功</h1>")
         }
         else {
-            nowSql = "UPDATE ranking SET id_nyoj=$now_name_nyoj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_nyoj='$now_name_nyoj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>nyoj填写成功</h1>")
         }
@@ -129,16 +131,45 @@ class NewUser : HttpServlet() {
             out.println("<h1>表单中fuquanoj未填写</h1>")
         else if (queryResult.getString("id_fuquan") != null) {
             out.println("<h1>数据库中fuquan存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_fuquan=$now_name_fuquanoj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_fuquan='$now_name_fuquanoj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>fuquanoj覆盖成功</h1>")
         }
         else {
-            nowSql = "UPDATE ranking SET id_fuquan=$now_name_fuquanoj where sno=\'$nowSno\'"
+            nowSql = "UPDATE ranking SET id_fuquan='$now_name_fuquanoj' where sno=\'$nowSno\'"
             stat.execute(nowSql)
             out.println("<h1>fuquanoj填写成功</h1>")
         }
-            out.println("<h1><a href=\"http://ranking.abmcar.top/\">返回榜单</a></h1>")
+
+        if (now_name_luogu.isEmpty())
+            out.println("<h1>表单中luogu未填写</h1>")
+        else if (queryResult.getString("id_luogu") != null) {
+            out.println("<h1>数据库中luogu存在,将覆盖原数据</h1>")
+            nowSql = "UPDATE ranking SET id_luogu='$now_name_luogu' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>luogu覆盖成功</h1>")
+        }
+        else {
+            nowSql = "UPDATE ranking SET id_luogu='$now_name_luogu' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>luogu填写成功</h1>")
+        }
+
+        if (now_name_vjudge.isEmpty())
+            out.println("<h1>表单中vjudge未填写</h1>")
+        else if (queryResult.getString("id_vjudge") != null) {
+            out.println("<h1>数据库中vjudge存在,将覆盖原数据</h1>")
+            nowSql = "UPDATE ranking SET id_vjudge='$now_name_vjudge' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>vjudge覆盖成功</h1>")
+        }
+        else {
+            nowSql = "UPDATE ranking SET id_vjudge='$now_name_vjudge' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>vjudge填写成功</h1>")
+        }
+        
+        out.println("<h1><a href=\"http://ranking.abmcar.top/\">返回榜单</a></h1>")
 
     }
 

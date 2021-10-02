@@ -3,48 +3,74 @@
   "count": 30,
   "data": [
     {
-      "fakeName": 0,
+      "fakeName": null,
       "name": "22",
       "rating_codeforces": 0,
       "sno": 11,
       "solve_codeforces": 0,
       "solve_fuquanoj": 0,
+      "solve_luogu": 0,
       "solve_nowcoder": 0,
       "solve_nyoj": 0,
-      "solve_zzulioj": 0
+      "solve_vjudge": 0,
+      "solve_zzulioj": 0,
+      "totSolve": 0
     },
     {
-      "fakeName": 0,
+      "fakeName": "312",
       "name": "321",
       "rating_codeforces": 0,
       "sno": 123,
       "solve_codeforces": 0,
       "solve_fuquanoj": 0,
+      "solve_luogu": 0,
       "solve_nowcoder": 0,
       "solve_nyoj": 0,
-      "solve_zzulioj": 306
+      "solve_vjudge": 0,
+      "solve_zzulioj": 306,
+      "totSolve": 306
     },
     {
-      "fakeName": 0,
+      "fakeName": "2",
+      "name": "1",
+      "rating_codeforces": 0,
+      "sno": 2015105337,
+      "solve_codeforces": 0,
+      "solve_fuquanoj": 0,
+      "solve_luogu": 0,
+      "solve_nowcoder": 0,
+      "solve_nyoj": 0,
+      "solve_vjudge": 0,
+      "solve_zzulioj": 0,
+      "totSolve": 0
+    },
+    {
+      "fakeName": "2015105600",
       "name": null,
-      "rating_codeforces": 0,
+      "rating_codeforces": 600,
       "sno": 2015105600,
-      "solve_codeforces": 0,
+      "solve_codeforces": 40,
       "solve_fuquanoj": 0,
+      "solve_luogu": 0,
       "solve_nowcoder": 0,
       "solve_nyoj": 0,
-      "solve_zzulioj": 100
+      "solve_vjudge": 0,
+      "solve_zzulioj": 100,
+      "totSolve": 140
     },
     {
-      "fakeName": 0,
+      "fakeName": "2015105601",
       "name": "abmcar",
-      "rating_codeforces": 0,
+      "rating_codeforces": 1600,
       "sno": 2015105601,
-      "solve_codeforces": 0,
+      "solve_codeforces": 110,
       "solve_fuquanoj": 0,
-      "solve_nowcoder": 0,
+      "solve_luogu": 368,
+      "solve_nowcoder": 86,
       "solve_nyoj": 0,
-      "solve_zzulioj": 13
+      "solve_vjudge": 234,
+      "solve_zzulioj": 13,
+      "totSolve": 811
     }
   ],
   "msg": ""
