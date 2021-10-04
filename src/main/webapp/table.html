@@ -14,37 +14,39 @@
 <!--      <dd><a href="">电商平台</a></dd>-->
 <!--    </dl>-->
 <!--  </li>-->
-<div id="container">
-    <ul class="layui-nav" lay-filter="">
-        <li class="layui-nav-item layui-this"><a href="http://ranking.abmcar.top">榜单</a></li>
-        <li class="layui-nav-item"><a
-                href="http://www.abmcar.top:8080/RankingWeb-1.0-SNAPSHOT/form.html">信息填写</a></li>
-        <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
-        <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
-        <!--  <li class="layui-nav-item">-->
-    </ul>
-    <!--    <div id="popup" class="hidden">-->
-    <!--        <div id="mask">-->
-    <!--            <div id="shadow"></div>-->
-    <!--            <div id="frame"></div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--            <header>-->
-    <!--            </header>-->
-    <div id="ttop">
-        <!--        <img src="icpc.jpg" class="layui-nav-img">-->
-        <div id="contest_title">NYIST_ACM Ranking List</div>
-    <div id="host">
-        <img src="ICPC.jpg" alt="ICPC">
-    </div>
-    </div>
-    <main>
-        <div id="table-container">
-            <table id="board">
-            </table>
-        </div>
-    </main>
-</div>
+<ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM Ranking List</a></li>
+    <li class="layui-nav-item layui-this"><a href="http://ranking.abmcar.top">榜单</a></li>
+    <li class="layui-nav-item"><a
+            href="http://www.abmcar.top:8080/RankingWeb-1.0-SNAPSHOT/form.html">信息填写</a></li>
+    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
+    <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
+    <!--  <li class="layui-nav-item">-->
+</ul>
+<!--<div id="container">-->
+<!--    &lt;!&ndash;    <div id="popup" class="hidden">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <div id="mask">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <div id="shadow"></div>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <div id="frame"></div>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <header>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </header>&ndash;&gt;-->
+<!--    <div id="ttop">-->
+<!--        &lt;!&ndash;        <img src="icpc.jpg" class="layui-nav-img">&ndash;&gt;-->
+<!--        <div id="contest_title">NYIST_ACM Ranking List</div>-->
+<!--        <div id="host">-->
+<!--            <img src="ICPC.jpg" alt="ICPC">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <main>&ndash;&gt;-->
+<!--        <div id="table-container">-->
+<!--        </div>-->
+<!--&lt;!&ndash;    </main>&ndash;&gt;-->
+<!--</div>-->
+<!--<div id="test3">-->
+    <table id="board"></table>
+<!--</div>-->
 <script src="layui/layui.js"></script>
 <script>
     layui.use('table', function () {
@@ -52,10 +54,10 @@
         //第一个实例
         table.render({
             elem: '#board'
-            , height: 2048
+            // , height: 2048
             , url: 'data.json' //数据接口
             , page: false//开启分页
-            , height: 'full-200'
+            , height: 'full-80'
             , cols: [[ //表头
                 {field: 'sno', title: '学号', width: 150, sort: true, align: 'center'}
                 , {field: 'name', title: '姓名', width: 150, align: 'center'}
@@ -67,8 +69,9 @@
                 , {field: 'solve_nowcoder', title: '牛客题数', width: 150, sort: true, align: 'center'}
                 , {field: 'solve_nyoj', title: 'nyoj题数', width: 150, sort: true, align: 'center'}
                 , {field: 'solve_fuquanoj', title: 'fuquanoj题数', width: 150, sort: true, align: 'center'}
-                , {field: 'solve_luogu', title: 'luogu题数', width: 150, sort: true}
-                , {field: 'solve_vjudge', title: 'vjudge题数', width: 150, sort: true}
+                , {field: 'solve_luogu', title: 'luogu题数', width: 150, sort: true, align: 'center'}
+                , {field: 'solve_vjudge', title: 'vjudge题数', width: 150, sort: true, align: 'center'}
+                , {field: 'solve_jzoj', title: 'jzoj题数', width: 150, sort: true, align: 'center'}
             ]]
         });
     });
