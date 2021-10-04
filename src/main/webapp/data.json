@@ -3,6 +3,7 @@
   "count": 300,
   "data": [
     {
+      "extra_codeforces": 0,
       "fakeName": null,
       "name": "22",
       "rating_codeforces": 0,
@@ -18,6 +19,7 @@
       "totSolve": 0
     },
     {
+      "extra_codeforces": 0,
       "fakeName": "312",
       "name": "321",
       "rating_codeforces": 0,
@@ -33,6 +35,7 @@
       "totSolve": 306
     },
     {
+      "extra_codeforces": 100,
       "fakeName": "hesorchen",
       "name": "???",
       "rating_codeforces": 1826,
@@ -48,6 +51,7 @@
       "totSolve": 1594
     },
     {
+      "extra_codeforces": 100,
       "fakeName": "rainbow",
       "name": "???",
       "rating_codeforces": 1653,
@@ -63,6 +67,7 @@
       "totSolve": 1643
     },
     {
+      "extra_codeforces": 100,
       "fakeName": "lrb666",
       "name": "???",
       "rating_codeforces": 1630,
@@ -78,6 +83,7 @@
       "totSolve": 441
     },
     {
+      "extra_codeforces": 10,
       "fakeName": "Emisaka",
       "name": "SYY",
       "rating_codeforces": 600,
@@ -93,6 +99,7 @@
       "totSolve": 588
     },
     {
+      "extra_codeforces": 100,
       "fakeName": "abmcar",
       "name": "abmcar",
       "rating_codeforces": 1504,
