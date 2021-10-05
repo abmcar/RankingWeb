@@ -57,11 +57,16 @@
             // , height: 2048
             , url: 'data.json' //数据接口
             , version: true
-            , page: true//开启分页
+            , page: false//开启分页
             , height: 'full-80'
+            ,initSort: {
+                field: 'totSolve'
+                ,type: 'desc'
+            }
             // , encode: "GBK"
             , cols: [[ //表头
-                {field: 'sno', title: '学号', width: 120, sort: true, align: 'center'}
+                {field:'zizeng', width:80, title: '序号',type:'numbers'}
+                ,{field: 'sno', title: '学号', width: 120, sort: true, align: 'center'}
                 , {field: 'name', title: '姓名', width: 120, align: 'center'}
                 , {field: 'fakeName', title: '昵称', width: 120, align: 'center'}
                 , {field: 'totSolve', title: '总题数', width: 150, sort: true, align: 'center'}
