@@ -2,7 +2,8 @@
     font-family: "CourierPrime";
     /*src: url("../fonts/CourierPrime-Bold.ttf");*/
 }
-.layui-table thead{
+
+.layui-table thead {
     /*background: #B8C1C8;*/
     /*border-bottom: 1px solid #989EA4;*/
     /*border-top: 1px solid #717D85;*/
@@ -15,6 +16,7 @@
     top: -1px;
     z-index: 2;
 }
+
 * {
     --text-dark: #222;
     --text-normal: #444;
@@ -459,6 +461,7 @@ main {
     /*font-weight: bold;*/
     /*box-shadow: 0 20px 20px #0001;*/
 }
+
 /**/
 /*#test3 {*/
 /*    font-weight: bold;*/
@@ -467,7 +470,6 @@ main {
 table {
     border-collapse: collapse;
 }
-
 
 
 /*#board thead {*/
@@ -518,6 +520,10 @@ tbody tr:hover {
 
 tbody tr:hover td.prob_d {
     filter: brightness(1.05);
+}
+
+a {
+    text-decoration: none;
 }
 
 tr.concerned {

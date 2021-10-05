@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-<html lang="zh-CN">
 <head>
     <title>NYIST-ACM Ranking List</title>
     <meta charset="utf8">
@@ -15,11 +14,12 @@
 <!--    </dl>-->
 <!--  </li>-->
 <ul class="layui-nav" lay-filter="">
-    <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM Ranking List</a></li>
+    <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM
+        Ranking List</a></li>
     <li class="layui-nav-item layui-this"><a href="http://ranking.abmcar.top">榜单</a></li>
     <li class="layui-nav-item"><a
             href="http://www.abmcar.top:8080/RankingWeb/form.html">信息填写</a></li>
-    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
+    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmRankingWebfaq">榜单FAQ</a></li>
     <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
     <!--  <li class="layui-nav-item">-->
 </ul>
@@ -45,7 +45,7 @@
 <!--&lt;!&ndash;    </main>&ndash;&gt;-->
 <!--</div>-->
 <!--<div id="test3">-->
-    <table id="board"></table>
+<table id="board" lay-data="{id:'testId']"></table>
 <!--</div>-->
 <script src="layui/layui.js"></script>
 <script>
@@ -56,8 +56,10 @@
             elem: '#board'
             // , height: 2048
             , url: 'data.json' //数据接口
-            , page: false//开启分页
+            , version: true
+            , page: true//开启分页
             , height: 'full-80'
+            // , encode: "GBK"
             , cols: [[ //表头
                 {field: 'sno', title: '学号', width: 120, sort: true, align: 'center'}
                 , {field: 'name', title: '姓名', width: 120, align: 'center'}
@@ -87,4 +89,3 @@
 </script>
 <script src="layui/board.js" type="text/javascript"></script>
 </body>
-</html>
