@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <head>
     <title>NYIST-ACM Ranking List</title>
-    <meta charset="utf8">
+    <meta charset="utf8" Cache-Control="no-cache" ,Pragma="no-cache">
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 </head>
@@ -19,8 +19,18 @@
     <li class="layui-nav-item layui-this"><a href="http://ranking.abmcar.top">榜单</a></li>
     <li class="layui-nav-item"><a
             href="http://www.abmcar.top:8080/RankingWeb/form.html">信息填写</a></li>
-    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmRankingWebfaq">榜单FAQ</a></li>
+    <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
     <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
+    <li class="layui-nav-item"><a>快捷提示</a>
+        <dl class="layui-nav-child">
+            <dd><a>按CTRL + F5可以清除缓存以看到最新榜单</a>></dd>
+            <dd><a>如果没有填某个oj的id,会默认按照昵称来爬取题数</a>></dd>
+        </dl>
+    </li>
+
+    <!--    <dl class="layui-nav-item">-->
+    <!--        <dd>t</dd>-->
+    <!--    </dl>-->
     <!--  <li class="layui-nav-item">-->
 </ul>
 <!--<div id="container">-->
@@ -59,15 +69,15 @@
             , version: true
             , page: false//开启分页
             , height: 'full-80'
-            ,initSort: {
+            , initSort: {
                 field: 'totSolve'
-                ,type: 'desc'
+                , type: 'desc'
             }
             // , encode: "GBK"
             , cols: [[ //表头
-                {field:'zizeng', width:80, title: '序号',type:'numbers'}
-                ,{field: 'sno', title: '学号', width: 120, sort: true, align: 'center'}
-                , {field: 'name', title: '姓名', width: 120, align: 'center'}
+                {field: 'zizeng', width: 80, title: '序号', type: 'numbers'}
+                , {field: 'sno', title: '学号', width: 120, sort: true, align: 'center'}
+                , {field: 'name', title: '姓名', width: 120, align: 'left'}
                 , {field: 'fakeName', title: '昵称', width: 120, align: 'center'}
                 , {field: 'totSolve', title: '总题数', width: 150, sort: true, align: 'center'}
                 , {field: 'solve_zzulioj', title: 'zzulioj题数', width: 150, sort: true, align: 'center'}
@@ -80,6 +90,8 @@
                 , {field: 'solve_luogu', title: 'luogu题数', width: 150, sort: true, align: 'center'}
                 , {field: 'solve_vjudge', title: 'vjudge题数', width: 150, sort: true, align: 'center'}
                 , {field: 'solve_jzoj', title: 'jzoj题数', width: 150, sort: true, align: 'center'}
+                , {field: 'solve_hduoj', title: 'hduoj题数', width: 150, sort: true, align: 'center'}
+                , {field: 'solve_poj', title: 'poj题数', width: 150, sort: true, align: 'center'}
             ]]
         });
     });

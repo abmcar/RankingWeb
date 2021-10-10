@@ -33,6 +33,9 @@ class NewUser : HttpServlet() {
         val now_name_fuquanoj = request.getParameter("id_fuquanoj")
         val now_name_luogu = request.getParameter("id_luogu")
         val now_name_vjudge = request.getParameter("id_vjudge")
+        val now_name_jzoj = request.getParameter("id_jzoj")
+        val now_name_hduoj = request.getParameter("id_hduoj")
+        val now_name_poj = request.getParameter("id_poj")
 
         val JDBC_DRIVER = "com.mysql.jdbc.Driver"
         val DB_URL = "jdbc:mysql://db.abmcar.top:10019/NYIST_ACM"
@@ -168,6 +171,50 @@ class NewUser : HttpServlet() {
             stat.execute(nowSql)
             out.println("<h1>vjudge填写成功</h1>")
         }
+
+        if (now_name_jzoj.isEmpty())
+            out.println("<h1>表单中jzoj未填写</h1>")
+        else if (queryResult.getString("id_jzoj") != null) {
+            out.println("<h1>数据库中jzoj存在,将覆盖原数据</h1>")
+            nowSql = "UPDATE ranking SET id_jzoj='$now_name_jzoj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>jzoj覆盖成功</h1>")
+        }
+        else {
+            nowSql = "UPDATE ranking SET id_jzoj='$now_name_jzoj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>jzoj填写成功</h1>")
+        }
+
+        if (now_name_hduoj.isEmpty())
+            out.println("<h1>表单中hduoj未填写</h1>")
+        else if (queryResult.getString("id_hduoj") != null) {
+            out.println("<h1>数据库中hduoj存在,将覆盖原数据</h1>")
+            nowSql = "UPDATE ranking SET id_hduoj='$now_name_hduoj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>hduoj覆盖成功</h1>")
+        }
+        else {
+            nowSql = "UPDATE ranking SET id_hduoj='$now_name_hduoj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>hduoj填写成功</h1>")
+        }
+
+        if (now_name_poj.isEmpty())
+            out.println("<h1>表单中poj未填写</h1>")
+        else if (queryResult.getString("id_poj") != null) {
+            out.println("<h1>数据库中poj存在,将覆盖原数据</h1>")
+            nowSql = "UPDATE ranking SET id_poj='$now_name_poj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>poj覆盖成功</h1>")
+        }
+        else {
+            nowSql = "UPDATE ranking SET id_poj='$now_name_poj' where sno=\'$nowSno\'"
+            stat.execute(nowSql)
+            out.println("<h1>poj填写成功</h1>")
+        }
+        
+        
         
         out.println("<h1><a href=\"http://ranking.abmcar.top/\">返回榜单</a></h1>")
 
