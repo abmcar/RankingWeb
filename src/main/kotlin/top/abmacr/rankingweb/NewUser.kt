@@ -1,5 +1,7 @@
 package top.abmacr.rankingweb
 
+import top.abmacr.rankingweb.config.Config
+import top.abmacr.rankingweb.config.ConfigData
 import java.sql.DriverManager
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
@@ -38,10 +40,10 @@ class NewUser : HttpServlet() {
         val now_name_poj = request.getParameter("id_poj")
 
         val JDBC_DRIVER = "com.mysql.jdbc.Driver"
-        val DB_URL = "jdbc:mysql://db.abmcar.top:10019/NYIST_ACM"
+        val DB_URL = ConfigData.URL
         Class.forName(JDBC_DRIVER)
-        val USER = "nyist"
-        val PASS = "password=NULL0"
+        val USER = ConfigData.USER
+        val PASS = ConfigData.PASSWORD
         val conn = DriverManager.getConnection(DB_URL, USER, PASS)
         val stat = conn.createStatement()
         var nowSql = "INSERT INTO ranking (sno) VALUES ($nowSno)"

@@ -1,5 +1,6 @@
 package top.abmacr.rankingweb
 
+import top.abmacr.rankingweb.config.ConfigData
 import javax.servlet.http.*
 import javax.servlet.annotation.*
 
@@ -19,6 +20,7 @@ class HelloServlet : HttpServlet() {
         out.println("<html><body>")
         out.println("<h1>$message</h1>")
         out.println("</body></html>")
+        out.println(ConfigData.test())
     }
 
     override fun destroy() {

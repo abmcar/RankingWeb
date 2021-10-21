@@ -1,0 +1,3 @@
+user: nyist
+password: password=NULL0
+url: jdbc:mysql://db.abmcar.top:10019/NYIST_ACM
