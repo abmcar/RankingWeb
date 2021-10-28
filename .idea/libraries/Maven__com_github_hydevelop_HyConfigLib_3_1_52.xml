@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.github.hydevelop:HyConfigLib:3.1.52">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/hydevelop/HyConfigLib/3.1.52/HyConfigLib-3.1.52.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/hydevelop/HyConfigLib/3.1.52/HyConfigLib-3.1.52-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/hydevelop/HyConfigLib/3.1.52/HyConfigLib-3.1.52-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

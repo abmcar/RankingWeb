@@ -1,7 +1,6 @@
 package top.abmacr.rankingweb.config
 
 import org.bukkit.configuration.file.YamlConfiguration
-import org.bukkit.plugin.Plugin
 import java.io.File
 
 object ConfigUtil {
