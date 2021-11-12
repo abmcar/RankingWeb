@@ -3,7 +3,7 @@ package top.abmacr.rankingweb.config
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
-object Config {
+class Config {
     private var configFile: File? = null
     private var configYaml: YamlConfiguration? = null
 

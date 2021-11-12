@@ -1,227 +1,92 @@
 package top.abmacr.rankingweb
 
-import top.abmacr.rankingweb.config.Config
 import top.abmacr.rankingweb.config.ConfigData
-import java.sql.DriverManager
+import top.abmacr.rankingweb.database.DatabaseUtil
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import java.sql.*
 
 @WebServlet(name = "newUser", value = ["/newUser"])
 class NewUser : HttpServlet() {
     private lateinit var message: String
 
     override fun init() {
-        message = "如有Bug或者其他问题,欢迎在<a href=\"https://github.com/abmcar/RankingWeb/issues\">https://github.com/abmcar/RankingWeb/issues</a> 提issue"
+        message =
+            "如有Bug或者其他问题,欢迎在<a href=\"https://github.com/abmcar/RankingWeb/issues\">https://github.com/abmcar/RankingWeb/issues</a> 提issue"
     }
 
     public override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
         response.contentType = "text/html"
         response.characterEncoding = "UTF-8"
-        // Hello
-        val out = response.writer
-        out.println("<html><body>")
-        out.println("<h3>$message</h3>")
-        out.println("</body></html>")
         val nowName = request.getParameter("name")
         val nowSno = request.getParameter("sno")
         val nowFakeName = request.getParameter("fakeName")
-        val now_name_zzulioj = request.getParameter("id_zzulioj")
-        val now_name_codeforces = request.getParameter("id_codeforces")
-        val now_name_nowcoder = request.getParameter("id_nowcoder")
-        val now_name_nyoj = request.getParameter("id_nyoj")
-        val now_name_fuquanoj = request.getParameter("id_fuquanoj")
-        val now_name_luogu = request.getParameter("id_luogu")
-        val now_name_vjudge = request.getParameter("id_vjudge")
-        val now_name_jzoj = request.getParameter("id_jzoj")
-        val now_name_hduoj = request.getParameter("id_hduoj")
-        val now_name_poj = request.getParameter("id_poj")
-
-        val JDBC_DRIVER = "com.mysql.jdbc.Driver"
-        val DB_URL = ConfigData.URL
-        Class.forName(JDBC_DRIVER)
-        val USER = ConfigData.USER
-        val PASS = ConfigData.PASSWORD
-        val conn = DriverManager.getConnection(DB_URL, USER, PASS)
-        val stat = conn.createStatement()
-        var nowSql = "INSERT INTO ranking (sno) VALUES ($nowSno)"
-        try {
-            stat.execute(nowSql)
-            out.println("<h1>已在数据库新建学号为 $nowSno 的记录</h1>")
-        } catch (e: Exception) {
-//            e.printStackTrace()
-            out.println("<h1>数据库中学号为 $nowSno 的记录已经存在</h1>")
+        val ojList: List<String> = ConfigData.OJ_NAMES
+        val ids: MutableMap<String, String> = HashMap()
+        for (ojName in ojList) {
+            val nowParameter = "id_$ojName"
+            ids[ojName] = request.getParameter(nowParameter)
         }
 
-        val query = conn.createStatement()
+        val stat = DatabaseUtil.getStatement()
+        var nowSql = "INSERT INTO ranking (sno) VALUES ($nowSno)"
+
+        var nowLog = ""
+
+        nowLog += try {
+            stat.execute(nowSql)
+            request.setAttribute("snoStatus", "√")
+            "已在数据库新建学号为 $nowSno 的记录."
+        } catch (e: Exception) {
+            request.setAttribute("snoStatus", "×")
+            "数据库中学号为 $nowSno 的记录已经存在."
+        }
+
+        val query = DatabaseUtil.getConnection().createStatement()
         val querySql = "select * from ranking where sno='$nowSno'"
         val queryResult = query.executeQuery(querySql)
         queryResult.next()
 
-        if (nowName.isEmpty())
-            out.println("<h1>表单中姓名未填写</h1>")
-        else {
+        if (nowName.isEmpty()) {
+            request.setAttribute("snameStatus", "×")
+            nowLog += "表单中姓名未填写."
+        } else {
             nowSql = "UPDATE ranking SET sname='$nowName' where sno=\'$nowSno\'"
             stat.execute(nowSql)
-            out.println("<h1>姓名填写成功</h1>")
+            request.setAttribute("snameStatus", "√")
+            nowLog += "姓名填写成功."
         }
 
-        if (nowFakeName.isEmpty())
-            out.println("<h1>表单中昵称未填写</h1>")
-        else {
+        if (nowFakeName.isEmpty()) {
+            request.setAttribute("fakeNameStatus", "×")
+            nowLog += "表单中昵称未填写."
+        } else {
             nowSql = "UPDATE ranking SET fakeName='$nowFakeName' where sno=\'$nowSno\'"
             stat.execute(nowSql)
-            out.println("<h1>昵称填写成功</h1>")
+            request.setAttribute("fakeNameStatus", "√")
+            nowLog += "昵称填写成功."
         }
 
-        if (now_name_zzulioj.isEmpty())
-            out.println("<h1>表单中zzulioj未填写</h1>")
-        else if (queryResult.getString("id_zzulioj") != null) {
-            out.println("<h1>数据库中zzulioj已存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_zzulioj='$now_name_zzulioj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>zzulioj覆盖</h1>")
+        for (ojName in ojList) {
+            if (ids[ojName] == "") {
+                request.setAttribute(ojName, "×")
+                nowLog += "表单中id_$ojName 未填写."
+                continue
+            }
+            if (queryResult.getString("id_$ojName") != null) {
+                nowSql = "UPDATE ranking SET id_$ojName='${ids[ojName]}' where sno=\'$nowSno\'"
+                stat.execute(nowSql)
+                request.setAttribute(ojName, "√")
+                nowLog += "数据库中id_$ojName 已存在,将覆盖原数据<."
+            } else {
+                nowSql = "UPDATE ranking SET id_$ojName='${ids[ojName]}' where sno=\'$nowSno\'"
+                stat.execute(nowSql)
+                request.setAttribute(ojName, "√")
+                nowLog += "id_$ojName 填写成功<."
+            }
         }
-        else {
-            nowSql = "UPDATE ranking SET id_zzulioj='$now_name_zzulioj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>zzulioj填写成功</h1>")
-        }
-
-        if (now_name_codeforces.isEmpty())
-            out.println("<h1>表单中codeforces未填写</h1>")
-        else if (queryResult.getString("id_codeforces") != null) {
-            out.println("<h1>数据库中codeforces已存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_codeforces='$now_name_codeforces' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>codeforces覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_codeforces='$now_name_codeforces' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>codeforces填写成功</h1>")
-        }
-
-        if (now_name_nowcoder.isEmpty())
-            out.println("<h1>表单中nowcoder未填写</h1>")
-        else if (queryResult.getString("id_nowcoder") != null) {
-            out.println("<h1>数据库中nowcoder存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_nowcoder='$now_name_nowcoder' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>nowcoder覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_nowcoder='$now_name_nowcoder' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>nowcoder填写成功</h1>")
-        }
-
-        if (now_name_nyoj.isEmpty())
-            out.println("<h1>表单中nyoj未填写</h1>")
-        else if (queryResult.getString("id_nyoj") != null) {
-            out.println("<h1>数据库中nyoj存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_nyoj='$now_name_nyoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>nyoj覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_nyoj='$now_name_nyoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>nyoj填写成功</h1>")
-        }
-
-        if (now_name_fuquanoj.isEmpty())
-            out.println("<h1>表单中fuquanoj未填写</h1>")
-        else if (queryResult.getString("id_fuquan") != null) {
-            out.println("<h1>数据库中fuquan存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_fuquan='$now_name_fuquanoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>fuquanoj覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_fuquan='$now_name_fuquanoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>fuquanoj填写成功</h1>")
-        }
-
-        if (now_name_luogu.isEmpty())
-            out.println("<h1>表单中luogu未填写</h1>")
-        else if (queryResult.getString("id_luogu") != null) {
-            out.println("<h1>数据库中luogu存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_luogu='$now_name_luogu' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>luogu覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_luogu='$now_name_luogu' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>luogu填写成功</h1>")
-        }
-
-        if (now_name_vjudge.isEmpty())
-            out.println("<h1>表单中vjudge未填写</h1>")
-        else if (queryResult.getString("id_vjudge") != null) {
-            out.println("<h1>数据库中vjudge存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_vjudge='$now_name_vjudge' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>vjudge覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_vjudge='$now_name_vjudge' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>vjudge填写成功</h1>")
-        }
-
-        if (now_name_jzoj.isEmpty())
-            out.println("<h1>表单中jzoj未填写</h1>")
-        else if (queryResult.getString("id_jzoj") != null) {
-            out.println("<h1>数据库中jzoj存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_jzoj='$now_name_jzoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>jzoj覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_jzoj='$now_name_jzoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>jzoj填写成功</h1>")
-        }
-
-        if (now_name_hduoj.isEmpty())
-            out.println("<h1>表单中hduoj未填写</h1>")
-        else if (queryResult.getString("id_hduoj") != null) {
-            out.println("<h1>数据库中hduoj存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_hduoj='$now_name_hduoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>hduoj覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_hduoj='$now_name_hduoj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>hduoj填写成功</h1>")
-        }
-
-        if (now_name_poj.isEmpty())
-            out.println("<h1>表单中poj未填写</h1>")
-        else if (queryResult.getString("id_poj") != null) {
-            out.println("<h1>数据库中poj存在,将覆盖原数据</h1>")
-            nowSql = "UPDATE ranking SET id_poj='$now_name_poj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>poj覆盖成功</h1>")
-        }
-        else {
-            nowSql = "UPDATE ranking SET id_poj='$now_name_poj' where sno=\'$nowSno\'"
-            stat.execute(nowSql)
-            out.println("<h1>poj填写成功</h1>")
-        }
-        
-        
-        
-        out.println("<h1><a href=\"http://ranking.abmcar.top/\">返回榜单</a></h1>")
-
-    }
-
-    override fun destroy() {
+        request.setAttribute("log", nowLog)
+        request.getRequestDispatcher("/message.jsp").forward(request, response)
     }
 }

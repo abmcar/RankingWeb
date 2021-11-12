@@ -2,20 +2,14 @@ package top.abmacr.rankingweb.config
 
 
 import org.bukkit.configuration.file.YamlConfiguration
-import java.io.File
 
 object ConfigData {
-    //    private val config: YamlConfiguration = File({Context})
 
-    private val config: YamlConfiguration? = ConfigUtil.loadYaml("database.yml")
+    private val config: YamlConfiguration = ConfigUtil.loadYaml("rankingConfig.yml")!!
 
-    val USER: String? = config?.getString("user")
-    val PASSWORD: String? = config?.getString("password")
-    val URL: String? = config?.getString("url")
+    val USER: String? = config.getString("user")
+    val PASSWORD: String? = config.getString("password")
+    val URL: String? = config.getString("url")
+    val OJ_NAMES: List<String> = config.getStringList("ojNames")
 
-//    fun test(): String? {
-//        val tempFile: File = File("data.json");
-//        println(tempFile.absolutePath);
-//        return USER;
-//    }
 }
