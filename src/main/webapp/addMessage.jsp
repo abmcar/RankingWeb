@@ -1,11 +1,12 @@
 <%--
-Created by IntelliJ IDEA.
-User: Abmcar
-Date: 2021/11/11
-Time: 15:37
-To change this template use File | Settings | File Templates.
+  Created by IntelliJ IDEA.
+  User: Abmcar
+  Date: 2021/11/11
+  Time: 15:37
+  To change this template use File | Settings | File Templates.
 --%>
 <% Object title = (String) request.getAttribute("title"); %>
+<%@ page import="top.abmacr.rankingweb.config.ConfigData" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -29,9 +30,32 @@ To change this template use File | Settings | File Templates.
     <!--  <li class="layui-nav-item">-->
 </ul>
 <%
-    String info = (String) request.getAttribute("info");
+    String snoStatus = (String) request.getAttribute("snoStatus");
+    String snameStatus = (String) request.getAttribute("snameStatus");
+    String fakeNameStatus = (String) request.getAttribute("fakeNameStatus");
+    String nowLog = (String) request.getAttribute("log");
 %>
-<h3><%=info%></h3>
+<h3>学号:<%=snoStatus%>
+</h3>
+<h3>姓名:<%=snameStatus%>
+</h3>
+<h3>昵称:<%=fakeNameStatus%>
+</h3>
+<%
+    for (String nowName : ConfigData.INSTANCE.getOJ_NAMES()) {
+        String nowStatus = (String) request.getAttribute(nowName);
+%>
+<h3><%=nowName%>:<%=nowStatus%></h3>
+<%
+    }
+    String[] logList = nowLog.split("\\.");
+    for (String log : logList) {
+%>
+<h3><%=log%>
+</h3>
+<%
+    }
+%>
 <a href="http://ranking.abmcar.top/">返回榜单</a>
 </body>
 </html>
