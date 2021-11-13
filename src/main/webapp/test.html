@@ -1,37 +1,112 @@
-<%--
-Created by IntelliJ IDEA.
-User: Abmcar
-Date: 2021/11/11
-Time: 15:37
-To change this template use File | Settings | File Templates.
---%>
-<% Object title = (String) request.getAttribute("title"); %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="">
 <head>
-  <title><%=title%>
-  </title>
-  <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
-  <link rel="stylesheet" href="layui/css/layui.css" media="all">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <title><%=title%>
+    </title>
+    <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
-<ul class="layui-nav" lay-filter="">
-  <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM
-    Ranking List</a></li>
-  <li class="layui-nav-item"><a href="http://ranking.abmcar.top">榜单</a></li>
-  <li class="layui-nav-item layui-this"><a
-          href="http://www.abmcar.top:8080/RankingWeb/form.html">信息填写</a></li>
-  <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
-  <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
-  <!--  <li class="layui-nav-item">-->
-</ul>
-<%
-String info = (String) request.getAttribute("info");
-%>
-<h3><%=info%></h3>
-<a href="http://ranking.abmcar.top/">返回榜单</a>
+<div class="layui-collapse">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">个人信息</h2>
+        <div class="layui-colla-content layui-show">
+            <table class="layui-table">
+                <tbody>
+                <tr>
+                    <td>贤心</td>
+                    <td>2016-11-29</td>
+                    <td>人生就像是一场修行</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">修改密码</h2>
+            <div class="layui-colla-content layui-show">
+                <form class="layui-form" action="">
+
+                    <div class="layui-form-item">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">旧密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="oldPassword" required lay-verify="required"
+                                       placeholder="请输入旧密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="newPassword" required lay-verify="required"
+                                       placeholder="请输入新密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">确认密码</label>
+                            <div class="layui-input-block">
+                                <input type="password" name="confirmPassword" required lay-verify="required"
+                                       placeholder="请重复输入新密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">更改</button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+        <div class="layui-colla-item">
+            <h2 class="layui-colla-title">OJ用户名修改</h2>
+            <div class="layui-colla-content layui-show">
+
+                <form class="layui-form" action="">
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">选择OJ</label>
+                        <div class="layui-input-block">
+                            <select name="city" lay-verify="required">
+                                <option value=""></option>
+                                <option value="0">北京</option>
+                                <option value="1">上海</option>
+                                <option value="2">广州</option>
+                                <option value="3">深圳</option>
+                                <option value="4">杭州</option>
+                            </select>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新ID</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" required lay-verify="required" placeholder="请输入新ID"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">更改</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="layui/layui.js"></script>
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    </script>
 </body>
 </html>

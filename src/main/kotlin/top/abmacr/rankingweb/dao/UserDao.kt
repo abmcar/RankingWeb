@@ -16,7 +16,7 @@ object UserDao {
         return false
     }
 
-    fun     checkLogin(userName: String, userPassword: String): Boolean {
+    fun checkLogin(userName: String, userPassword: String): Boolean {
         val stat: Statement = DatabaseUtil.getStatement()
         val querySql: String = "select * from user where user='$userName'"
         val resultSet: ResultSet = stat.executeQuery(querySql)
@@ -48,15 +48,19 @@ object UserDao {
     }
 
 
-    fun querySolve(user: User) {
+    fun querySolve(user: User): User {
         val ojs: List<String> = ConfigData.OJ_NAMES
         val stat: Statement = DatabaseUtil.getStatement()
         val nowQuery = "select * from ranking where sno='${user.getUserSno()}'"
         val rs: ResultSet = stat.executeQuery(nowQuery)
         if (rs.next()) {
             for (ojName in ojs)
-                user.setOjSolve(ojName, rs.getInt("solve_${user.getUserSno()}"))
+                if (ojName.equals("fuquanoj"))
+                    user.setOjSolve(ojName, rs.getInt("solve_fuquan"))
+                else
+                    user.setOjSolve(ojName, rs.getInt("solve_${ojName}"))
         }
+        return user
     }
 
     private fun querySno(userName: String): String {

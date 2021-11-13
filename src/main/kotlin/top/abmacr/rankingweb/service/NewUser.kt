@@ -1,4 +1,4 @@
-package top.abmacr.rankingweb
+package top.abmacr.rankingweb.service
 
 import top.abmacr.rankingweb.config.ConfigData
 import top.abmacr.rankingweb.database.DatabaseUtil
@@ -39,7 +39,7 @@ class NewUser : HttpServlet() {
             request.setAttribute("snoStatus", "√")
             "已在数据库新建学号为 $nowSno 的记录."
         } catch (e: Exception) {
-            request.setAttribute("snoStatus", "×")
+            request.setAttribute("snoStatus", "√")
             "数据库中学号为 $nowSno 的记录已经存在."
         }
 
@@ -87,6 +87,6 @@ class NewUser : HttpServlet() {
             }
         }
         request.setAttribute("log", nowLog)
-        request.getRequestDispatcher("/message.jsp").forward(request, response)
+        request.getRequestDispatcher("/addMessage.jsp").forward(request, response)
     }
 }
