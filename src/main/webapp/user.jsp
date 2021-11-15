@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>我的信息</title>
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
@@ -38,33 +38,61 @@
         </dl>
     </li>
 </ul>
+<%
+    User user = (User) request.getAttribute("user");
+    if (user == null) {
+        request.setAttribute("info", "Please login first!");
+        request.setAttribute("title", "unLogin");
+        response.sendRedirect("login.html");
+    } else {
+        String userName = user.getUserName();
+        String UserSno = user.getUserSno();
+%>
+<table class="layui-table">
+    <tbody>
+    <tr>
+        <td>
+            <h3>用户名</h3>
+        </td>
+        <td>
+            <h3>学号</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3 id="userName"><%=userName%>
+            </h3>
+        </td>
+        <td>
+            <h3 id="userSno"><%=UserSno%>
+            </h3>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <div class="layui-collapse">
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">个人信息</h2>
-        <%
-            User user = (User) request.getAttribute("user");
-            if (user == null) {
-                request.setAttribute("info", "Please login first!");
-                request.setAttribute("title", "unLogin");
-                response.sendRedirect("login.html");
-            } else {
-                String userName = user.getUserName();
-                String UserSno = user.getUserSno();
-        %>
         <div class="layui-colla-content">
-        <h3 id = "userName"><%=userName%></h3>
-        <h3 id = "userSno"><%=UserSno%></h3>
             <table class="layui-table">
                 <tbody>
+                <tr>
+                    <td>OJ名称</td>
+                    <td>OJ用户名/ID</td>
+                    <td>OJ解题数</td>
+                </tr>
                 <%
 
 
-                        user = UserDao.INSTANCE.querySolve(user);
-                        List<String> ojs = ConfigData.INSTANCE.getOJ_NAMES();
-                        for (String nowOj : ojs) {
+                    user = UserDao.INSTANCE.querySolve(user);
+                    user = UserDao.INSTANCE.queryId(user);
+                    List<String> ojs = ConfigData.INSTANCE.getOJ_NAMES();
+                    for (String nowOj : ojs) {
                 %>
                 <tr>
                     <td><%=nowOj %>
+                    </td>
+                    <td><%=user.getIdMap().get(nowOj)%>
                     </td>
                     <td><%=user.getSolutionMap().get(nowOj)%>
                     </td>
@@ -86,32 +114,34 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">旧密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="oldPassword" required lay-verify="required"
+                                <input type="password" id="oldPassword" required lay-verify="required"
                                        placeholder="请输入旧密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">新密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="newPassword" required lay-verify="required"
+                                <input type="password" id="newPassword" required lay-verify="required"
                                        placeholder="请输入新密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">确认密码</label>
                             <div class="layui-input-block">
-                                <input type="password" name="confirmPassword" required lay-verify="required"
+                                <input type="password" id="confirmPassword" required lay-verify="required"
                                        placeholder="请重复输入新密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="formDemo">更改</button>
+                            <input class="layui-btn" onclick="changeUserPassword()" type='button' name='submit' value='更改'>
                         </div>
                     </div>
                 </form>
+                <div id="result1">
 
+                </div>
 
             </div>
         </div>
@@ -140,18 +170,19 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">新ID</label>
                             <div class="layui-input-block">
-                                <input type="text" id="newId" name="newId" required lay-verify="required" placeholder="请输入新ID"
+                                <input type="text" id="newId" name="newId" required lay-verify="required"
+                                       placeholder="请输入新ID"
                                        autocomplete="off" class="layui-input">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-<%--                            <button class="layui-btn" onclick="changeOjId()">登录</button>--%>
-                            <input class="layui-btn" onclick=changeOjId() type='button' name='submit' value='登录'>
+                            <%--                            <button class="layui-btn" onclick="updateOjId()">登录</button>--%>
+                            <input class="layui-btn" onclick="updateOjId()" type='button' name='submit' value='更改'>
                         </div>
                     </div>
-                    <div id = "result">
+                    <div id="result">
 
                     </div>
                 </form>

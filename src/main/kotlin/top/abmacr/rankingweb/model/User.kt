@@ -5,6 +5,7 @@ class User {
     private var userPassword: String = ""
     private var userSno: String = ""
     private var solveMap: MutableMap<String, Int> = HashMap<String, Int>()
+    private var idMap: MutableMap<String,String> = HashMap<String,String>()
     private var totSolves: Int = 0
 
     constructor(userName: String, userPassword: String, userSno: String) {
@@ -41,6 +42,10 @@ class User {
         return solveMap
     }
 
+    fun getIdMap(): MutableMap<String,String> {
+        return idMap
+    }
+
     fun getTotalSolves(): Int {
         var nowTotal = 0
         solveMap.forEach() {
@@ -51,6 +56,10 @@ class User {
 
     fun setOjSolve(ojName: String, solveNum: Int) {
         solveMap[ojName] = solveNum
+    }
+
+    fun setOjId(ojName:String, ojId: String) {
+        idMap[ojName] = ojId
     }
 
 }

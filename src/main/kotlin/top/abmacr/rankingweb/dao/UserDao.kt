@@ -63,6 +63,53 @@ object UserDao {
         return user
     }
 
+    fun queryId(user: User): User {
+        val ojs: List<String> = ConfigData.OJ_NAMES
+        val stat: Statement = DatabaseUtil.getStatement()
+        val nowQuery = "select * from ranking where sno='${user.getUserSno()}'"
+        val rs: ResultSet = stat.executeQuery(nowQuery)
+        if (rs.next()) {
+            for (ojName in ojs)
+                if (ojName.equals("fuquanoj"))
+                    user.setOjId(ojName, rs.getString("id_fuquan"))
+                else
+                    user.setOjId(ojName, rs.getString("id_${ojName}"))
+        }
+        return user
+    }
+
+    fun updateOjId(userSno: String, ojName: String, newId: String): Boolean {
+        try {
+            val stat = DatabaseUtil.getStatement()
+            val nowSql = "UPDATE ranking SET $ojName='$newId' where sno='${userSno}'"
+            stat.execute(nowSql)
+            return true
+        } catch (e: Exception) {
+            return false
+        }
+    }
+
+    fun updateUserPassword(userSno: String, oldPassword: String, newPassword: String): Boolean {
+        try {
+            val stat: Statement = DatabaseUtil.getStatement()
+            val nowQuery = "select * from user where sno='$userSno'"
+            val rs: ResultSet = stat.executeQuery(nowQuery)
+            rs.next()
+            return if (rs.getString("password").equals(oldPassword))
+                try {
+                    val nowSql = "UPDATE user SET password='$newPassword' where sno='${userSno}'"
+                    stat.execute(nowSql)
+                    true
+                } catch (e: Exception) {
+                    false
+                }
+            else
+                false
+        } catch (e: Exception) {
+            return false
+        }
+    }
+
     private fun querySno(userName: String): String {
         val stat: Statement = DatabaseUtil.getStatement()
         val nowQuery = "select * from user where user='$userName'"
