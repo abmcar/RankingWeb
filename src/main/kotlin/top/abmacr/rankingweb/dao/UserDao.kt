@@ -21,7 +21,6 @@ object UserDao {
         val querySql: String = "select * from user where user='$userName'"
         val resultSet: ResultSet = stat.executeQuery(querySql)
         resultSet.next()
-        val test = resultSet.getString("password")
         if (!resultSet.getString("password").equals(userPassword))
             return true;
         return false
@@ -42,6 +41,7 @@ object UserDao {
     }
 
     fun register(userName: String, userPassword: String, userSno: String) {
+        registerInsert(userName, userPassword)
         val stat: Statement = DatabaseUtil.getStatement()
         val sql = "insert into user values('$userName','$userPassword','$userSno')"
         stat.execute(sql)
@@ -70,10 +70,15 @@ object UserDao {
         val rs: ResultSet = stat.executeQuery(nowQuery)
         if (rs.next()) {
             for (ojName in ojs)
-                if (ojName.equals("fuquanoj"))
-                    user.setOjId(ojName, rs.getString("id_fuquan"))
-                else
-                    user.setOjId(ojName, rs.getString("id_${ojName}"))
+                try {
+                    if (ojName.equals("fuquanoj"))
+                        user.setOjId(ojName, rs.getString("id_fuquan"))
+                    else
+                        user.setOjId(ojName, rs.getString("id_${ojName}"))
+
+                } catch (e: Exception) {
+                    user.setOjId(ojName, "未填写")
+                }
         }
         return user
     }
@@ -118,5 +123,13 @@ object UserDao {
         return rs.getString("sno")
     }
 
-
+    private fun registerInsert(userName: String, userSno: String) {
+        try {
+            val stat = DatabaseUtil.getStatement()
+            val nowSql = "INSERT INTO ranking (sno) VALUES ($userSno)"
+            stat.execute(nowSql)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

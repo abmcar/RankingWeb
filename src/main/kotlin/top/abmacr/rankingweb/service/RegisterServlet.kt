@@ -1,6 +1,7 @@
 package top.abmacr.rankingweb.service
 
 import top.abmacr.rankingweb.dao.UserDao
+import top.abmacr.rankingweb.database.DatabaseUtil
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
@@ -27,7 +28,7 @@ class RegisterServlet : HttpServlet() {
             request.setAttribute("title", "Register Fail")
             request.getRequestDispatcher("message.jsp").forward(request, response)
         } else {
-            UserDao.register(userName,userPassword,userSno)
+            UserDao.register(userName, userPassword, userSno)
             request.setAttribute("title", " Register Success")
             request.setAttribute("info", "Register Success! Please login!")
             request.getRequestDispatcher("message.jsp").forward(request, response)
