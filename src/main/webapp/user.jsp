@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
 <ul class="layui-nav" lay-filter="">
@@ -110,25 +113,25 @@
             <div class="layui-colla-content">
                 <form class="layui-form" action="">
 
-                    <div class="layui-form-item">
+                    <div id="mima" class="layui-form-item">
                         <div class="layui-form-item">
                             <label class="layui-form-label">旧密码</label>
                             <div class="layui-input-block">
-                                <input type="password" id="oldPassword" required lay-verify="required"
+                                <input style="width:60%;text-align:center;" type="password" id="oldPassword" required lay-verify="required"
                                        placeholder="请输入旧密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">新密码</label>
                             <div class="layui-input-block">
-                                <input type="password" id="newPassword" required lay-verify="required"
+                                <input style="width:60%;text-align:center;" type="password" id="newPassword" required lay-verify="required"
                                        placeholder="请输入新密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
-                        <div class="layui-form-item">
+                        <div  class="layui-form-item">
                             <label class="layui-form-label">确认密码</label>
                             <div class="layui-input-block">
-                                <input type="password" id="confirmPassword" required lay-verify="required"
+                                <input style="width:60%;text-align:center;" type="password" id="confirmPassword" required lay-verify="required"
                                        placeholder="请重复输入新密码" autocomplete="off" class="layui-input">
                             </div>
                         </div>
@@ -170,7 +173,7 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label">新ID</label>
                  ？           <div class="layui-input-block">
-                                <input type="text" id="newId" name="newId" required lay-verify="required"
+                                <input  type="text" id="newId" name="newId" required lay-verify="required"
                                        placeholder="请输入新ID"
                                        autocomplete="off" class="layui-input">
                             </div>

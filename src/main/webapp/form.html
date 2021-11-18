@@ -6,87 +6,117 @@
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <style type="text/css">
+        body {
+            background-image: url(photos/bg.png); /*加载背景图*/
+            background-position: center center;  /* 背景图垂直、水平均居中 */
+            background-repeat: no-repeat; /* 背景图不平铺 */
+            background-attachment: fixed;  /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-size: cover;  /* 让背景图基于容器大小伸缩(此条属性必须设置否则可能无效) */
+            background-color: #ffffff; /* 设置背景颜色，背景图加载过程中会显示背景色 */
+            width:100%;
+        }
+
+        div{
+            top:100px;
+            margin: auto;
+        }
+        #Form{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <ul class="layui-nav" lay-filter="">
     <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM
         Ranking List</a></li>
-    <li class="layui-nav-item"><a href="http://ranking.abmcar.top">榜单</a></li>
-    <li class="layui-nav-item layui-this"><a
+    <li class="layui-nav-item layui-this"><a href="http://ranking.abmcar.top">榜单</a></li>
+    <li class="layui-nav-item"><a
             href="http://www.abmcar.top:8080/RankingWeb/form.html">信息填写</a></li>
     <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
     <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
-    <!--  <li class="layui-nav-item">-->
+    <li class="layui-nav-item"><a>快捷提示</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">按CTRL + F5可以清除缓存以看到最新榜单</a></dd>
+            <dd><a href="">如果没有填某个oj的id,会默认按照昵称来爬取题数</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item"><a>我的信息</a>
+        <dl class="layui-nav-child">
+            <dd><a href="login.jsp">登录</a></dd>
+            <dd><a href="register.jsp">注册</a></dd>
+        </dl>
+    </li>
 </ul>
 <table id="demo" lay-filter="test"></table>
 
 <form class="layui-form" action="newUser" method="get"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-    <div class="layui-form-item">
-        <label class="layui-form-label">学号</label>
+    <div  class="layui-form-item" style="clear:both;width:30%;" >
+        <label style="top:100px;"class="layui-form-label">学号</label>
         <div class="layui-input-block">
             <input type="text" name="sno" placeholder="必填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">姓名</label>
+        <label style="top:100px;"class="layui-form-label">姓名</label>
         <div class="layui-input-block">
             <input type="text" name="name" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">昵称</label>
+        <label style="top:100px;"class="layui-form-label">昵称</label>
         <div class="layui-input-block">
             <input type="text" name="fakeName" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
         <br>
         <div style="text-align: center;"><label>以下均填各个oj的用户id</label></div>
         <br>
-        <label class="layui-form-label">zzulioj</label>
+        <label style="top:100px;" class="layui-form-label">zzulioj</label>
         <div class="layui-input-block">
             <input type="text" name="id_zzulioj" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">codefroces</label>
+        <label style="top:100px;" class="layui-form-label">codefroces</label>
         <div class="layui-input-block">
             <input type="text" name="id_codeforces" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">牛客</label>
+        <label  style="top:100px;" class="layui-form-label">牛客</label>
         <div class="layui-input-block">
             <input type="text" name="id_nowcoder" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">nyoj</label>
+        <label  style="top:100px;" class="layui-form-label">nyoj</label>
         <div class="layui-input-block">
             <input type="text" name="id_nyoj" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">fuquanoj</label>
+        <label  style="top:100px;" class="layui-form-label">fuquanoj</label>
         <div class="layui-input-block">
             <input type="text" name="id_fuquanoj" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">luogu</label>
+        <label  style="top:100px;"class="layui-form-label">luogu</label>
         <div class="layui-input-block">
             <input type="text" name="id_luogu" placeholder="选填-填用户uid非用户名" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">vjudge</label>
+        <label  style="top:100px;"class="layui-form-label">vjudge</label>
         <div class="layui-input-block">
             <input type="text" name="id_vjudge" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">jzoj</label>
+        <label  style="top:100px;"class="layui-form-label">jzoj</label>
         <div class="layui-input-block">
             <input type="text" name="id_jzoj" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">hduoj</label>
+        <label  style="top:100px;"class="layui-form-label">hduoj</label>
         <div class="layui-input-block">
             <input type="text" name="id_hduoj" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
-        <label class="layui-form-label">poj</label>
+        <label  style="top:100px;"class="layui-form-label">poj</label>
         <div class="layui-input-block">
             <input type="text" name="id_poj" placeholder="选填" autocomplete="off" class="layui-input">
         </div>
 
-
-    </div>
-
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
         </div>
     </div>
+
+
     <!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
 </form>
 <script src="layui/layui.js"></script>
