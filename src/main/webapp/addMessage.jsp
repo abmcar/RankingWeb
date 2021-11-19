@@ -17,6 +17,44 @@
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <style type="text/css">
+        body {
+            background-image: url(photos/bg.png); /*加载背景图*/
+            background-position: center center;  /* 背景图垂直、水平均居中 */
+            background-repeat: no-repeat; /* 背景图不平铺 */
+            background-attachment: fixed;  /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-size: cover;  /* 让背景图基于容器大小伸缩(此条属性必须设置否则可能无效) */
+            background-color: #ffffff; /* 设置背景颜色，背景图加载过程中会显示背景色 */
+            width:100%;
+        }
+        .message{
+            color: #000;
+            background-color: #fff;
+            padding: 2em 3em;
+            margin: 3% 35%;
+            z-index: 500;
+            /*display: inline-block;*/
+            width: 34%;
+        }
+
+        .relogin{
+            color: #000;
+            font-size: 36px;
+        }
+
+        .left{
+            float: left;
+            width: 60%;
+            text-align: left;
+        }
+
+        /*.right{*/
+        /*    float: left;*/
+        /*    width: 40%;*/
+        /*    text-align: center;*/
+        /*    margin:auto 0;*/
+        /*}*/
+    </style>
 </head>
 <body>
 <ul class="layui-nav" lay-filter="">
@@ -35,27 +73,38 @@
     String fakeNameStatus = (String) request.getAttribute("fakeNameStatus");
     String nowLog = (String) request.getAttribute("log");
 %>
-<h3>学号:<%=snoStatus%>
-</h3>
-<h3>姓名:<%=snameStatus%>
-</h3>
-<h3>昵称:<%=fakeNameStatus%>
-</h3>
+<div class="message">
+    <div class="right">
+<h2>学号:<%=snoStatus%>
+</h2>
+<h2>姓名:<%=snameStatus%>
+</h2>
+<h2>昵称:<%=fakeNameStatus%>
+</h2>
 <%
     for (String nowName : ConfigData.INSTANCE.getOJ_NAMES()) {
         String nowStatus = (String) request.getAttribute(nowName);
 %>
-<h3><%=nowName%>:<%=nowStatus%></h3>
+<h2><%=nowName%>:<%=nowStatus%>
+</h2>
 <%
     }
-    String[] logList = nowLog.split("\\.");
-    for (String log : logList) {
+    if (nowLog != null) {
+        String[] logList = nowLog.split("\\.");
+        for (String log : logList) {
+
+
 %>
-<h3><%=log%>
-</h3>
+<h2><%=log%>
+</h2>
 <%
+        }
     }
 %>
-<a href="http://ranking.abmcar.top/">返回榜单</a>
+        </br>
+        </br></br>
+<a class="layui-btn" href="http://ranking.abmcar.top/">返回榜单</a> </br>
+</div>
+</div>
 </body>
 </html>
