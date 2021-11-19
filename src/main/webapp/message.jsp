@@ -16,6 +16,44 @@ To change this template use File | Settings | File Templates.
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <style type="text/css">
+        body {
+            background-image: url(photos/bg.png); /*加载背景图*/
+            background-position: center center;  /* 背景图垂直、水平均居中 */
+            background-repeat: no-repeat; /* 背景图不平铺 */
+            background-attachment: fixed;  /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-size: cover;  /* 让背景图基于容器大小伸缩(此条属性必须设置否则可能无效) */
+            background-color: #ffffff; /* 设置背景颜色，背景图加载过程中会显示背景色 */
+            width:100%;
+        }
+        .message{
+            color: #000;
+            background-color: #fff;
+            padding: 2em 3em;
+            margin: 20% 30%;
+            z-index: 1000;
+            display: inline-block;
+            width: 34%;
+        }
+
+        .relogin{
+            color: #000;
+            font-size: 36px;
+        }
+
+        .left{
+            float: left;
+            width: 60%;
+            text-align: left;
+        }
+
+        .right{
+            float: left;
+            width: 40%;
+            text-align: center;
+            margin:auto 0;
+        }
+    </style>
 </head>
 <body>
 <ul class="layui-nav" lay-filter="">
@@ -39,10 +77,17 @@ To change this template use File | Settings | File Templates.
         </dl>
     </li>
 </ul>
+<div id="formS" class="message"style="width: 650px; position: relative;">
+    <div class="left">
+
+
 <%
     String info = (String) request.getAttribute("info");
 %>
-<h3><%=info%></h3>
-<a href="http://ranking.abmcar.top/">返回榜单</a>
+    <h1><%=info%></h1>
+
+<a class="layui-btn" href="http://ranking.abmcar.top/">返回榜单</a>
+</div>
+</div>
 </body>
 </html>
