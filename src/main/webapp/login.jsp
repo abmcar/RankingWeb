@@ -15,18 +15,19 @@
     <style type="text/css">
         body {
             background-image: url(photos/bg.png); /*加载背景图*/
-            background-position: center center;  /* 背景图垂直、水平均居中 */
+            background-position: center center; /* 背景图垂直、水平均居中 */
             background-repeat: no-repeat; /* 背景图不平铺 */
-            background-attachment: fixed;  /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
-            background-size: cover;  /* 让背景图基于容器大小伸缩(此条属性必须设置否则可能无效) */
+            background-attachment: fixed; /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-size: cover; /* 让背景图基于容器大小伸缩(此条属性必须设置否则可能无效) */
             background-color: #ffffff; /* 设置背景颜色，背景图加载过程中会显示背景色 */
-            width:100%;
+            width: 100%;
         }
-       #forms{
-           top:250px;
-           margin: 0 auto;
-       }
-        </style>
+
+        #forms {
+            top: 250px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
 <ul class="layui-nav" lay-filter="">
@@ -53,28 +54,30 @@
 <div id="formS" style="width: 650px; position: relative;">
 
 
-<form class="layui-form" action="login" method="post">
-    <div class="layui-form-item">
-        <label class="layui-form-label">用户名</label>
-        <div class="layui-input-block">
-            <input type="text" name="userName" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+    <form class="layui-form" action="login" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input type="text" name="userName" required lay-verify="required" placeholder="请输入用户名"
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label  class="layui-form-label">密码</label>
-        <div class="layui-input-block">
-            <input type="password" name="userPassword" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="userPassword" required lay-verify="required" placeholder="请输入密码"
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
-            <a  class="layui-btn" href="http://ranking.abmcar.top/">返回榜单</a>
-            <!--      <a href="register.jsp"><button class="layui-btn layui-btn-primary">注册</button></a>-->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+                <a class="layui-btn" href="http://ranking.abmcar.top/">返回榜单</a>
+                <!--      <a href="register.jsp"><button class="layui-btn layui-btn-primary">注册</button></a>-->
+            </div>
         </div>
-    </div>
 
-</form>
+    </form>
 </div>
 
 <script src="layui/layui.js"></script>

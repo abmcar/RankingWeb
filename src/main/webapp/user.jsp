@@ -172,7 +172,7 @@
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">新ID</label>
-                 ？           <div class="layui-input-block">
+                            <div class="layui-input-block">
                                 <input  type="text" id="newId" name="newId" required lay-verify="required"
                                        placeholder="请输入新ID"
                                        autocomplete="off" class="layui-input">

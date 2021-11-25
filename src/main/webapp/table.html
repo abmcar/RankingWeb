@@ -4,16 +4,9 @@
     <meta charset="utf8" Cache-Control="no-cache" ,Pragma="no-cache">
     <link rel="stylesheet" href="layui/css/styles.css" type="text/css">
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 </head>
 <body>
-<!--    <a href="javascript:;">解决方案</a>-->
-<!--    <dl class="layui-nav-child"> &lt;!&ndash; 二级菜单 &ndash;&gt;-->
-<!--      <dd><a href="">移动模块</a></dd>-->
-<!--      <dd><a href="">后台模版</a></dd>-->
-<!--      <dd><a href="">电商平台</a></dd>-->
-<!--    </dl>-->
-<!--  </li>-->
 <ul class="layui-nav" lay-filter="">
     <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM
         Ranking List</a></li>
@@ -35,38 +28,13 @@
         </dl>
     </li>
 </ul>
-<!--<div id="container">-->
-<!--    &lt;!&ndash;    <div id="popup" class="hidden">&ndash;&gt;-->
-<!--    &lt;!&ndash;        <div id="mask">&ndash;&gt;-->
-<!--    &lt;!&ndash;            <div id="shadow"></div>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <div id="frame"></div>&ndash;&gt;-->
-<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <header>&ndash;&gt;-->
-<!--    &lt;!&ndash;            </header>&ndash;&gt;-->
-<!--    <div id="ttop">-->
-<!--        &lt;!&ndash;        <img src="icpc.jpg" class="layui-nav-img">&ndash;&gt;-->
-<!--        <div id="contest_title">NYIST_ACM Ranking List</div>-->
-<!--        <div id="host">-->
-<!--            <img src="ICPC.jpg" alt="ICPC">-->
-<!--        </div>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    <main>&ndash;&gt;-->
-<!--        <div id="table-container">-->
-<!--        </div>-->
-<!--&lt;!&ndash;    </main>&ndash;&gt;-->
-<!--</div>-->
-<!--<div id="test3">-->
 <table id="board" lay-data="{id:'testId']"></table>
-<!--</div>-->
 <script src="layui/layui.js"></script>
 <script>
     layui.use('table', function () {
         var table = layui.table;
-        //第一个实例
         table.render({
             elem: '#board'
-            // , height: 2048
             , url: 'data.json' //数据接口
             , version: true
             , page: false//开启分页
@@ -99,11 +67,8 @@
     });
 </script>
 <script>
-    //注意：导航 依赖 element 模块，否则无法进行功能性操作
     layui.use('element', function () {
         var element = layui.element;
-
-        //…
     });
 </script>
 <script src="layui/board.js" type="text/javascript"></script>

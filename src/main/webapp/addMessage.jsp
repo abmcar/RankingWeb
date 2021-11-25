@@ -61,11 +61,22 @@
     <li class="layui-nav-item"><a href="http://ranking.abmcar.top"><img src="ICPC.jpg" class="layui-nav-img">NYIST_ACM
         Ranking List</a></li>
     <li class="layui-nav-item"><a href="http://ranking.abmcar.top">榜单</a></li>
-    <li class="layui-nav-item layui-this"><a
+    <li class="layui-nav-item"><a
             href="http://www.abmcar.top:8080/RankingWeb/form.html">信息填写</a></li>
     <li class="layui-nav-item"><a href="http://www.abmcar.top/archives/nyistacmrankinglistfaq">榜单FAQ</a></li>
     <li class="layui-nav-item"><a href="https://github.com/abmcar/RankingWeb/issues">问题反馈</a></li>
-    <!--  <li class="layui-nav-item">-->
+    <li class="layui-nav-item"><a>快捷提示</a>
+        <dl class="layui-nav-child">
+            <dd><a href="">按CTRL + F5可以清除缓存以看到最新榜单</a></dd>
+            <dd><a href="">如果没有填某个oj的id,会默认按照昵称来爬取题数</a></dd>
+        </dl>
+    </li>
+    <li class="layui-nav-item  layui-this"><a>我的信息</a>
+        <dl class="layui-nav-child">
+            <dd><a href="login.jsp">登录</a></dd>
+            <dd><a href="register.jsp">注册</a></dd>
+        </dl>
+    </li>
 </ul>
 <%
     String snoStatus = (String) request.getAttribute("snoStatus");
